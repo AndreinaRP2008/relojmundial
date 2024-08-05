@@ -7,15 +7,15 @@ function updateTime() {
 
     // Hora en Perú (UTC-5)
     const peruTime = new Date(now.toLocaleString('en-US', { timeZone: 'America/Lima' }));
-    peruTimeElement.textContent = peruTime.toLocaleTimeString();
+    peruTimeElement.textContent = peruTime.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
 
     // Hora en Corea (UTC+9)
     const koreaTime = new Date(now.toLocaleString('en-US', { timeZone: 'Asia/Seoul' }));
-    koreaTimeElement.textContent = koreaTime.toLocaleTimeString();
+    koreaTimeElement.textContent = koreaTime.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
 
     // Hora en España (UTC+1)
     const spainTime = new Date(now.toLocaleString('en-US', { timeZone: 'Europe/Madrid' }));
-    spainTimeElement.textContent = spainTime.toLocaleTimeString();
+    spainTimeElement.textContent = spainTime.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
 }
 
 // Actualizar cada segundo
