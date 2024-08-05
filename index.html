@@ -9,46 +9,10 @@
 <body>
     <div class="container">
         <h1>Reloj Mundial</h1>
-        <div class="timezones">
-            <label for="timezone-select">Selecciona una zona horaria:</label>
-            <select id="timezone-select">
-                <option value="America/New_York">New York</option>
-                <option value="Asia/Tokyo">Tokyo</option>
-                <option value="Europe/London">London</option>
-                <option value="Asia/Seoul">Seoul</option>
-                <option value="Europe/Madrid">Madrid</option>
-                <!-- Agrega más opciones según sea necesario -->
-            </select>
-        </div>
-        <div class="clocks">
-            <div class="clock" id="clock-ny">
-                <h2>New York</h2>
-                <div class="analog-clock"></div>
-                <div class="time">00:00:00</div>
-            </div>
-            <div class="clock" id="clock-tokyo">
-                <h2>Tokyo</h2>
-                <div class="analog-clock"></div>
-                <div class="time">00:00:00</div>
-            </div>
-            <div class="clock" id="clock-london">
-                <h2>London</h2>
-                <div class="analog-clock"></div>
-                <div class="time">00:00:00</div>
-            </div>
-            <div class="clock" id="clock-seoul">
-                <h2>Seoul</h2>
-                <div class="analog-clock"></div>
-                <div class="time">00:00:00</div>
-            </div>
-            <div class="clock" id="clock-madrid">
-                <h2>Madrid</h2>
-                <div class="analog-clock"></div>
-                <div class="time">00:00:00</div>
-            </div>
-        </div>
+        <div class="clock" id="peru-clock">Perú: <span id="peru-time"></span></div>
+        <div class="clock" id="korea-clock">Corea: <span id="korea-time"></span></div>
+        <div class="clock" id="spain-clock">España: <span id="spain-time"></span></div>
     </div>
-
     <script src="script.js"></script>
 </body>
 </html>
