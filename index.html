@@ -9,10 +9,6 @@
 <body>
     <div class="container">
         <h1>Reloj Mundial</h1>
-        <div class="theme-switch">
-            <label for="theme-toggle">Modo Oscuro</label>
-            <input type="checkbox" id="theme-toggle">
-        </div>
         <div class="timezones">
             <label for="timezone-select">Selecciona una zona horaria:</label>
             <select id="timezone-select">
@@ -51,16 +47,8 @@
                 <div class="time">00:00:00</div>
             </div>
         </div>
-        <div class="alarm">
-            <h2>Configurar Alarma</h2>
-            <form id="alarm-form">
-                <label for="alarm-time">Hora de la alarma:</label>
-                <input type="time" id="alarm-time" required>
-                <button type="submit">Configurar Alarma</button>
-            </form>
-            <div id="alarm-status"></div>
-        </div>
     </div>
+
     <script src="script.js"></script>
 </body>
 </html>

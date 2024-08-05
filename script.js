@@ -1,42 +1,60 @@
-// Añadir debajo de las funciones existentes
+// script.js
 
 document.addEventListener('DOMContentLoaded', () => {
-    // ... código existente ...
+    const clocks = {
+        'clock-ny': 'America/New_York',
+        'clock-tokyo': 'Asia/Tokyo',
+        'clock-london': 'Europe/London',
+        'clock-seoul': 'Asia/Seoul',
+        'clock-madrid': 'Europe/Madrid'
+    };
 
-    let alarmTime = null;
-    let alarmTimeout = null;
-
-    function checkAlarm() {
+    function updateClocks() {
         const now = new Date();
-        const currentTimeString = now.toTimeString().split(' ')[0];
+        for (const [clockId, timezone] of Object.entries(clocks)) {
+            const localTime = new Date(now.toLocaleString('en-US', { timeZone: timezone }));
+            const timeString = localTime.toTimeString().split(' ')[0];
+            document.querySelector(`#${clockId} .time`).textContent = timeString;
 
-        if (currentTimeString === alarmTime) {
-            alert('¡Alarma!');
-            clearAlarm();
+            // Actualiza el reloj analógico
+            const hours = localTime.getHours() % 12;
+            const minutes = localTime.getMinutes();
+            const seconds = localTime.getSeconds();
+
+            const hourHand = document.querySelector(`#${clockId} .hand.hour`);
+            const minuteHand = document.querySelector(`#${clockId} .hand.minute`);
+            const secondHand = document.querySelector(`#${clockId} .hand.second`);
+
+            hourHand.style.transform = `rotate(${(hours * 30) + (minutes / 2)}deg)`;
+            minuteHand.style.transform = `rotate(${(minutes * 6) + (seconds / 10)}deg)`;
+            secondHand.style.transform = `rotate(${seconds * 6}deg)`;
         }
     }
 
-    function setAlarm(event) {
-        event.preventDefault();
-        const alarmInput = document.getElementById('alarm-time');
-        alarmTime = alarmInput.value + ':00';
-        document.getElementById('alarm-status').textContent = `Alarma configurada para las ${alarmInput.value}`;
-        if (alarmTimeout) {
-            clearTimeout(alarmTimeout);
-        }
-        alarmTimeout = setTimeout(checkAlarm, 1000);
+    // Crear manecillas del reloj analógico
+    function createClockHands(clockId) {
+        const analogClock = document.querySelector(`#${clockId} .analog-clock`);
+        ['hour', 'minute', 'second'].forEach(hand => {
+            const handDiv = document.createElement('div');
+            handDiv.classList.add('hand', hand);
+            analogClock.appendChild(handDiv);
+        });
     }
 
-    function clearAlarm() {
-        document.getElementById('alarm-status').textContent = '';
-        alarmTime = null;
-        if (alarmTimeout) {
-            clearTimeout(alarmTimeout);
-        }
-    }
+    Object.keys(clocks).forEach(createClockHands);
 
-    document.getElementById('alarm-form').addEventListener('submit', setAlarm);
-
-    // Actualizar los relojes cada segundo
+    // Actualiza el reloj cada segundo
     setInterval(updateClocks, 1000);
+
+    // Actualiza los relojes inicialmente
+    updateClocks();
+
+    // Selector de zonas horarias
+    document.getElementById('timezone-select').addEventListener('change', (event) => {
+        const selectedTimezone = event.target.value;
+        // Muestra solo el reloj seleccionado
+        Object.keys(clocks).forEach(clockId => {
+            document.getElementById(clockId).style.display = clocks[clockId] === selectedTimezone ? 'block' : 'none';
+        });
+    });
 });
